@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.2.0.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/Mirolo.css"/>
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
+<script>
+$(document).ready(function() {
+ 
+        var dataPath0 = 'http://www.mirolo.net/m/data.php?cat=vidanocturna';
+    
+        $.getJSON(dataPath0,
+        function(data0){
+          $.each(data0.items, function(i,item0){
+          
+                $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.published + "</p></a></li>");
+    
+				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
+				var clientPage0 =  clientPageHeader0 +"<br/><div><img alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234' width='314' height='178' /></div><h5>" + item0.description + "</h5><hr /><h4>Redes Sociales...</h4>";
+                var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
+
+                newPage0.appendTo( $.mobile.pageContainer );
+    
+            });
+        });
+
+        var dataPath1 = 'http://www.mirolo.net/m/data.php?cat=gastronomia';
+
+        $.getJSON(dataPath1,
+        function(data1){
+          $.each(data1.items, function(i,item1){
+          
+                $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon+ "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.published + "</p></a></li>");
+    
+                var newPage1 = $("<div data-role=page id=page1_" + i + " data-url=page1" + i + " data-add-back-btn='true'><div data-role=header><h1>" + item1.title + "</h1></div><div data-role=content>" + item1.description + "</div></div>");
+
+                newPage1.appendTo( $.mobile.pageContainer );
+    
+            });
+        });
+
+    });
+</script>
+<title>Mirolo</title>
+<script src="js/jquery.mobile-1.2.0.min.js"></script>
+
+</head>
+
+<body id="page_body">
+<div data-role="page" id="page_inicio">
+    <div data-role=header>
+        <h1>MIROLO</h1>
+    </div>    
+    <div data-role="content">
+        <div style="width: 288px; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
+                    <img src="http://mirolo.net/Portals/0/LogoWebSmall.png" alt="image" style="position: absolute; top: 50%; left: 15%; margin-left: -16px; margin-top: -18px" />
+                </div>
+        <h3>Es mejor que lo veas a que te lo cuenten</h3>
+        <a data-role="button" href="#pageQuien">Quién es Mirolo?</a>
+        <br/>
+        <h2>Categorias</h2>
+        <a data-role="button" href="#page0">Vida Nocturna</a>
+        <a data-role="button" href="#page1">Gastronomia</a> 
+    </div>
+</div>
+<div data-role="page" id="page0" data-add-back-btn='true'>
+    <div data-role=header>
+        <h1>MIROLO</h1>
+    </div>    
+    <div data-role="content">
+        <h1>VIDA NOCTURNA</h1><br/>
+        <ul data-role="listview" data-inset="false" data-filter="true" data-filter-placeholder="Filtrar..." id="menuList0"></ul>  
+    </div>
+</div>
+<div data-role="page" id="page1" data-add-back-btn='true'>
+    <div data-role=header>
+        <h1>MIROLO</h1>
+    </div>    
+    <div data-role="content">
+        <h1>GASTRONOMIA</h1><br/>
+        <ul data-role="listview" data-inset="false" data-filter="true" data-filter-placeholder="Filtrar..." id="menuList1"></ul>  
+    </div>
+</div>
+<div data-role="page" id="pageQuien" data-add-back-btn='true'>
+    <div data-role=header>
+        <h1>MIROLO</h1>
+    </div>    
+    <div data-role="content">
+        <h1>Quién es Mirolo?</h1><br/>
+        <h4>Una herramienta de comunicación y promoción móvil masiva que permite a los clientes publicar y mostrar en tiempo real lo que hay para hacer en sus negocios, y a los usuarios acceder a una Vitrina Digital de los lugares que son de su interés. Esta propuesta busca ser una alternativa eco amigable a la promoción de lugares y eventos, los cuales hoy en día hacen uso intensivo de papel y materiales de impresión.</h4> 
+    </div>
+</div>
+</body>
+</html>
+​
