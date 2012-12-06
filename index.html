@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/Mirolo.css"/>
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
 <script>
+
 $(document).ready(function() {
  
         var dataPath0 = 'http://www.mirolo.net/m/data.php?cat=vidanocturna';
@@ -42,7 +43,25 @@ $(document).ready(function() {
             });
         });
 
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
     });
+	
+function reachableCallback(reachability) {
+// There is no consistency on the format of reachability
+var networkState = reachability.code || reachability;
+var states = {};
+	states[NetworkStatus.NOT_REACHABLE]                      = 'Sin conexión, se requiere una conexión a Internet';
+	states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Plan de datos';
+	states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi';
+	alert('Tipo de conexión: ' + states[networkState]);
+}
+
+// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+function onDeviceReady() {
+	navigator.network.isReachable('phonegap.com', reachableCallback);
+}	
+	
 </script>
 <title>Mirolo</title>
 <script src="js/jquery.mobile-1.2.0.min.js"></script>
