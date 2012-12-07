@@ -9,9 +9,8 @@
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
 
 <script language="JavaScript" type="text/javascript">
-	function reload() {setTimeout('reloadImg("refresh")',300)};  
-	function reloadImg(id)
-	{
+	//function reload() {setTimeout('reloadImg("refresh")',300)};  
+	function reloadImg(id){
 		var obj = document.getElementById(id);
 		var rand = Math.random();
 		obj.src = obj.src.replace(/([?|&]t=)[^\&]+/, '$1' + rand);
@@ -31,7 +30,7 @@ $(document).ready(function() {
                 $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.published + "</p></a></li>");
     
 				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
-				var clientPage0 =  clientPageHeader0 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='reload()' /></div><h5>" + item0.description + "</h5><hr /><h4>Redes Sociales...</h4>";
+				var clientPage0 =  clientPageHeader0 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh" + i+ "\"),300);' /></div><h5>" + item0.description + "</h5><hr /><h4>Redes Sociales...</h4>";
                 var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
 
                 newPage0.appendTo( $.mobile.pageContainer );
