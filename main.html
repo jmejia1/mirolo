@@ -15,7 +15,6 @@
 		var obj = document.getElementById(id);
 		var rand = Math.random();
 		obj.src = obj.src.replace(/([?|&]t=)[^\&]+/, '$1' + rand);
-		//obj.src = "http://sinkobar.dyndns.org/snapshot.cgi?user=visitor&pwd=1234&t="+rand;
 	}
 </script>
 
@@ -55,11 +54,11 @@ $(document).ready(function() {
             });
         });
 
-		//document.addEventListener("deviceready", onDeviceReady, false);
+		document.addEventListener("deviceready", onDeviceReady, false);
 		
     });
 	
-/*function reachableCallback(reachability) {
+function reachableCallback(reachability) {
 // There is no consistency on the format of reachability
 var networkState = reachability.code || reachability;
 var states = {};
@@ -72,7 +71,7 @@ var states = {};
 // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 function onDeviceReady() {
 	navigator.network.isReachable('phonegap.com', reachableCallback);
-}	*/
+}	
 	
 </script>
 <title>Mirolo</title>
@@ -90,11 +89,14 @@ function onDeviceReady() {
                     <img src="http://mirolo.net/Portals/0/LogoWebSmall.png" alt="image" style="position: absolute; top: 50%; left: 15%; margin-left: -16px; margin-top: -18px" />
                 </div>
         <h3>Es mejor que lo veas a que te lo cuenten</h3>
-        <a data-role="button" href="#pageQuien">Quién es Mirolo?</a>
         <br/>
         <h2>Categorias</h2>
         <a data-role="button" href="#page0">Vida Nocturna</a>
         <a data-role="button" href="#page1">Gastronomia</a> 
+		<br/>
+		<a data-role="button" href="#pageQuien">Quién es Mirolo?</a>
+		<br/>
+		<a data-role="button" href="javascript:navigator.app.exitApp();">Salir</a>
     </div>
 </div>
 <div data-role="page" id="page0" data-add-back-btn='true'>
