@@ -30,7 +30,7 @@ $(document).ready(function() {
                 $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.published + "</p></a></li>");
     
 				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
-				var clientPage0 =  clientPageHeader0 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh" + i+ "\"),300);' /></div><h5>" + item0.description + "</h5>";
+				var clientPage0 =  clientPageHeader0 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh" + i+ "\"),500);' /></div><div class="transbox"><p>" + item0.description + "</p></div>";
                 var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
 
                 newPage0.appendTo( $.mobile.pageContainer );
@@ -47,7 +47,7 @@ $(document).ready(function() {
                 $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.published + "</p></a></li>");
     
 				var clientPageHeader1 = "<ul data-role='listview' data-inset='false' id='menuListHeader1'><li class='ui-li-has-thumb'><a href='#'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3></a></li></ul>"
-				var clientPage1 =  clientPageHeader1 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh" + i+ "\"),300);' /></div><h5>" + item1.description + "</h5>";
+				var clientPage1 =  clientPageHeader1 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh" + i+ "\"),500);' /></div><div class="transbox"><p>" + item1.description + "</p></div>";
                 var newPage1 = $("<div data-role=page id=page1_" + i + " data-url=page1" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item1.title + "</h1></div><div data-role=content>" + clientPage1 + "</div></div>");
 
                 newPage1.appendTo( $.mobile.pageContainer );
