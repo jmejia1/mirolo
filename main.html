@@ -9,7 +9,7 @@
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
 
 <script language="JavaScript" type="text/javascript">
-	//function reload() {setTimeout('reloadImg("refresh")',300)};  
+	//function reload() {setTimeout('reloadImg("refresh")',500)};  
 	function reloadImg(id){
 		var obj = document.getElementById(id);
 		var rand = Math.random();
@@ -30,7 +30,7 @@ $(document).ready(function() {
                 $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.published + "</p></a></li>");
     
 				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
-				var clientPage0 =  clientPageHeader0 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh" + i+ "\"),500);' /></div><div class='transbox'><p>" + item0.description + "</p></div>";
+				var clientPage0 =  clientPageHeader0 +"<br/><div><img id='refresh0" + i + "' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh0" + i+ "\"),500);' /></div><div class='transbox'><p>" + item0.description + "</p></div>";
                 var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
 
                 newPage0.appendTo( $.mobile.pageContainer );
@@ -47,7 +47,7 @@ $(document).ready(function() {
                 $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.published + "</p></a></li>");
     
 				var clientPageHeader1 = "<ul data-role='listview' data-inset='false' id='menuListHeader1'><li class='ui-li-has-thumb'><a href='#'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3></a></li></ul>"
-				var clientPage1 =  clientPageHeader1 +"<br/><div><img id='refresh" + i + "' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh" + i+ "\"),500);' /></div><div class='transbox'><p>" + item1.description + "</p></div>";
+				var clientPage1 =  clientPageHeader1 +"<br/><div><img id='refresh1" + i + "' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh1" + i+ "\"),500);' /></div><div class='transbox'><p>" + item1.description + "</p></div>";
                 var newPage1 = $("<div data-role=page id=page1_" + i + " data-url=page1" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item1.title + "</h1></div><div data-role=content>" + clientPage1 + "</div></div>");
 
                 newPage1.appendTo( $.mobile.pageContainer );
@@ -94,16 +94,21 @@ function onDeviceReady() {
 		<div style="width: 100%; text-align: center;">
 			<img src="css/images/Logo.png" alt="Logo" />
 		</div>
-        <br/>
-		<div style="text-align: center;">
-        <a data-role="button" href="#page0" data-inline="true"><img src="css/images/btnVidaNocturna.jpg" alt="Logo" /></a>
-        <a data-role="button" href="#page1" data-inline="true"><img src="css/images/btnGastronomia.jpg" alt="Logo" /></a> 
+		<div style="width: 100%; text-align: center;">
+		<a href="#page0" data-theme="" id="btnVidaNocturna"> <img src="css/images/btnVidaNocturna.jpg"></a><br/><br/>
+		<a href="#page1" data-theme="" id="btnGastronomia"> <img src="css/images/btnGastronomia.jpg"></a><br/><br/>
+        <!--<a data-role="button" href="#page0" data-inline="true" data-theme=""><img src="css/images/btnVidaNocturna.jpg" alt="Logo" /></a>
+        <a data-role="button" href="#page1" data-inline="true" data-theme=""><img src="css/images/btnGastronomia.jpg" alt="Logo" /></a> -->
+		<hr/><br/>
+		<a href="#pageQuien" data-theme="" id="QuienEsMirolo"> <img src="css/images/QuienEsMirolo.jpg"></a><br/><br/>
+		<!--<a data-role="button" data-inline="true" href="#pageQuien"><img src="css/images/QuienEsMirolo.jpg" alt="Quien es Mirolo?" /></a> -->
 		</div>
-		<br/>
-		<div style="text-align: center;">
-		<a data-role="button" data-inline="true" href="#pageQuien">Quién<br/>es<br/>Mirolo?</a>
-		<a data-role="button" data-inline="true" href="#pagePrivacidad"><img src="css/images/Privacidad.gif" alt="Logo" /></a><br/>
-		<a data-role="button" href="javascript:navigator.app.exitApp();">Salir</a>
+		<div style="width: 100%; text-align: center;">
+		<a href="#pagePrivacidad" data-theme="" id="Provacidad"> <img src="css/images/Privacidad.gif"></a><br/><br/>
+		<!-- <a data-role="button" data-inline="true" href="#pagePrivacidad"><img src="css/images/Privacidad.gif" alt="Logo" /></a><br/> -->
+		</div>
+		<div style="width: 100%; text-align: center;">
+		<a data-role="button" data-inline="true" href="javascript:navigator.app.exitApp();">Salir</a>
 		</div>
     </div>
 </div>
@@ -130,9 +135,9 @@ function onDeviceReady() {
         <h1>Mirolo</h1>
     </div>    
     <div data-role="content">
-        <h2>Quién es Mirolo?</h2><br/>
+        <img src="css/images/QuienEsMirolo.jpg"><br/><br/>
 		<div class="transbox">
-        <p>Una herramienta de comunicación y promoción móvil masiva que permite a los clientes publicar y mostrar en tiempo real lo que hay para hacer en sus negocios, y a los usuarios acceder a una Vitrina Digital de los lugares que son de su interés. Esta propuesta busca ser una alternativa eco amigable a la promoción de lugares y eventos, los cuales hoy en día hacen uso intensivo de papel y materiales de impresión.</p> 
+        <p>Una herramienta de comunicación y promoción móvil masiva que permite a los clientes publicar y mostrar en tiempo real lo que hay para hacer en sus negocios, y a los usuarios acceder a una Vitrina Digital de los lugares que son de su interés. Esta propuesta busca ser una alternativa eco amigable a la promoción de lugares y eventos, los cuales hoy en día hacen uso intensivo de papel y materiales de impresión. <br/><br/>Para más información visita <a href="http://www.mirolo.net" target="_blank">www.mirolo.net</a></p> 
 		</div>
     </div>
 </div>
@@ -141,9 +146,9 @@ function onDeviceReady() {
         <h1>Mirolo</h1>
     </div> 
     <div data-role="content">
-        <h2>Politica de Privacidad</h2><br/>
+        <img src="css/images/Privacidad.gif"><br/><br/>
 		<div class="transbox">
-        <p>Una herramienta de comunicación y promoción móvil masiva que permite a los clientes publicar y mostrar en tiempo real lo que hay para hacer en sus negocios, y a los usuarios acceder a una Vitrina Digital de los lugares que son de su interés. Esta propuesta busca ser una alternativa eco amigable a la promoción de lugares y eventos, los cuales hoy en día hacen uso intensivo de papel y materiales de impresión.</p> 
+        <p>Me preocupo por tu privacidad, por eso no me escondo para que siempre sepas donde me encuentro, además no recuerdo nada, sólo miroleo y no grabo. Mi mente no almacena imágenes o recuerdos, no tengo memoria para reproducir los momentos, lugares ni personas. <br/><br/>Siempre tengo presente a todos los términos legales vigentes concernientes al derecho a la intimidad personal, familiar y habeas data, estipulados en el artículo 15 de la constitución y en el artículo 36 de la ley 23 de 1982.</p> 
 		</div>
     </div>
 </div>
