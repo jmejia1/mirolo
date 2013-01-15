@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "com.mirolo"
+	version 	= "1.0.0">
+
+	<name>Mirolo</name>
+
+	<description>
+		Mirolo es una vitrina digital en tiempo real que te hace la vida más fácil, porque antes de ir a un lugar lo puedes ver desde dónde estás!
+	</description>
+
+	<author href="http://www.mirolo.net"
+		email="jonathanmr@mirolo.net">
+		Mirolo Mobile
+	</author>
+
+	<icon src="icon.png" gap:role="default" />
+
+	<feature name="http://api.phonegap.com/1.0/network"/>
+
+	<preference name="phonegap-version" value="2.2.0" />
+	<preference name="orientation" value="portrait" />
+	<preference name="android-installLocation" value="auto" />
+</widget>
