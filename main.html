@@ -8,18 +8,41 @@
 <link rel="stylesheet" type="text/css" href="css/Mirolo.css"/>
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
 
-<script language="JavaScript" type="text/javascript">
-	//function reload() {setTimeout('reloadImg("refresh")',500)};  
-	function reloadImg(id){
-		var obj = document.getElementById(id);
-		var rand = Math.random();
-		obj.src = obj.src.replace(/([?|&]t=)[^\&]+/, '$1' + rand);
-	}
-</script>
-
 <script>
 
 $(document).ready(function() {
+ 
+		var timer = null; 
+		var idToShow = null;
+
+		$(document).bind('pagehide', function(event, data) {
+			//console.log("next page: " + data.nextPage.attr('id'));
+			
+			idToShow = data.nextPage.attr('id');
+			
+			if(idToShow.indexOf("_") != -1)
+			{
+				idToShow = idToShow + "_img";
+				timer = window.setInterval(reloadImg, 1000);  //setTimeout("reloadImg(" + idToShow + ")",500);
+				//console.log("streaming: ON");
+			}
+			else
+			{
+				clearInterval(timer);
+				idToShow = null;
+				//console.log("streaming: OFF");
+			}
+			
+		});
+		
+		function reloadImg(){
+			var obj = document.getElementById(idToShow);
+			var rand = Math.random();
+			obj.src = obj.src.replace(/([?|&]t=)[^\&]+/, '$1' + rand);
+			//console.log("updating: " + idToShow);
+		}
+		
+		// --------------
  
         var dataPath0 = 'http://www.mirolo.net/m/data.php?cat=vidanocturna';
     
@@ -30,7 +53,7 @@ $(document).ready(function() {
                 $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.published + "</p></a></li>");
     
 				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
-				var clientPage0 =  clientPageHeader0 +"<br/><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='refresh0" + i + "' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><a data-role='button' href='javascript:reloadImg(\"refresh0" + i + "\");'>Actualizar Imagen</a><div class='transbox'><p>" + item0.description + "</p></div>";
+				var clientPage0 =  clientPageHeader0 +"<br/><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item0.description + "</p></div>";
                 var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
 
                 newPage0.appendTo( $.mobile.pageContainer );
@@ -47,8 +70,7 @@ $(document).ready(function() {
                 $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.published + "</p></a></li>");
     
 				var clientPageHeader1 = "<ul data-role='listview' data-inset='false' id='menuListHeader1'><li class='ui-li-has-thumb'><a href='#'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3></a></li></ul>"
-				//var clientPage1 =  clientPageHeader1 +"<br/><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='refresh1" + i + "' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' onload='setTimeout(reloadImg(\"refresh1" + i+ "\"),500);' /></div></div><div class='transbox'><p>" + item1.description + "</p></div>";
-				var clientPage1 =  clientPageHeader1 +"<br/><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='refresh1" + i + "' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><a data-role='button' href='javascript:reloadImg(\"refresh1" + i + "\");'>Actualizar Imagen</a><div class='transbox'><p>" + item1.description + "</p></div>";
+				var clientPage1 =  clientPageHeader1 +"<br/><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page1_" + i + "_img' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item1.description + "</p></div>";
                 var newPage1 = $("<div data-role=page id=page1_" + i + " data-url=page1" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item1.title + "</h1></div><div data-role=content>" + clientPage1 + "</div></div>");
 
                 newPage1.appendTo( $.mobile.pageContainer );
@@ -61,36 +83,21 @@ $(document).ready(function() {
 		
     });
 	
-function reachableCallback(reachability) {
-// There is no consistency on the format of reachability
-var networkState = reachability.code || reachability;
-var states = {};
-	states[NetworkStatus.NOT_REACHABLE]                      = 'Sin conexión, se requiere una conexión a Internet';
-	states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Plan de datos';
-	states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi';
-	alert('Tipo de conexión: ' + states[networkState]);
-}
-
-// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
-function onDeviceReady() {
-	navigator.network.isReachable('phonegap.com', reachableCallback);
-}	
+	// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+	function onDeviceReady() {
+		navigator.network.isReachable('phonegap.com', reachableCallback);
+	}	
 	
 </script>
+
 <title>Mirolo</title>
 <script src="js/jquery.mobile-1.2.0.min.js"></script>
 
 </head>
 
 <body id="page_body">
-<div data-role="page" id="page_inicio">
-    <!--<div data-role=header>
-        <h1>MIROLO</h1>
-    </div>    -->
+<div data-role="page" id="pageInicio">
     <div data-role="content">
-        <!--<div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
-                    <img src="css/images/Logo.gif" alt="image" style="position: absolute; top: 50%; left: 15%; margin-left: -16px; margin-top: -18px" />
-                </div>-->
 		<br/>
 		<div style="width: 100%; text-align: center;">
 			<img src="css/images/Logo.png" alt="Logo" />
@@ -98,15 +105,11 @@ function onDeviceReady() {
 		<div style="width: 100%; text-align: center;">
 		<a href="#page0" data-theme="" id="btnVidaNocturna"> <img src="css/images/btnVidaNocturna.jpg"></a><br/><br/>
 		<a href="#page1" data-theme="" id="btnGastronomia"> <img src="css/images/btnGastronomia.jpg"></a><br/><br/>
-        <!--<a data-role="button" href="#page0" data-inline="true" data-theme=""><img src="css/images/btnVidaNocturna.jpg" alt="Logo" /></a>
-        <a data-role="button" href="#page1" data-inline="true" data-theme=""><img src="css/images/btnGastronomia.jpg" alt="Logo" /></a> -->
 		<hr/><br/>
 		<a href="#pageQuien" data-theme="" id="QuienEsMirolo"> <img src="css/images/QuienEsMirolo.jpg"></a><br/><br/>
-		<!--<a data-role="button" data-inline="true" href="#pageQuien"><img src="css/images/QuienEsMirolo.jpg" alt="Quien es Mirolo?" /></a> -->
 		</div>
 		<div style="width: 100%; text-align: center;">
 		<a href="#pagePrivacidad" data-theme="" id="Provacidad"> <img src="css/images/Privacidad.gif"></a><br/><br/>
-		<!-- <a data-role="button" data-inline="true" href="#pagePrivacidad"><img src="css/images/Privacidad.gif" alt="Logo" /></a><br/> -->
 		</div>
 		<div style="width: 100%; text-align: center;">
 		<a data-role="button" data-inline="true" href="javascript:navigator.app.exitApp();">Salir</a>
