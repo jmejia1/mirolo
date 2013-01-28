@@ -33,6 +33,12 @@ $(document).ready(function() {
 				//console.log("streaming: OFF");
 			}
 			
+			$('div#TabA').show();
+			$('div#TabB').hide();
+			
+			$('a[data-href^="Tab"]').removeClass('ui-btn-active');
+			$('a[data-href="TabA"]').addClass('ui-btn-active');
+			
 		});
 		
 		function reloadImg(){
@@ -42,6 +48,14 @@ $(document).ready(function() {
 			//console.log("updating: " + idToShow);
 		}
 		
+		
+		$('div[data-role="navbar"] a').live('click', function () {
+			$(this).addClass('ui-btn-active');
+			$('div.content_div').hide();
+			$('div#' + $(this).attr('data-href')).show();
+		});
+		
+		
 		// --------------
  
         var dataPath0 = 'http://www.mirolo.net/m/data.php?cat=vidanocturna';
@@ -50,10 +64,10 @@ $(document).ready(function() {
         function(data0){
           $.each(data0.items, function(i,item0){
           
-                $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.published + "</p></a></li>");
+                $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.description + "</p></a></li>");
     
 				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
-				var clientPage0 =  clientPageHeader0 +"<br/><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item0.description + "</p></div>";
+				var clientPage0 = clientPageHeader0 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>En Vivo</a></li><li><a href='#' data-href='TabB'>Promociones</a></li></ul></div><div id='TabA' class='content_div'><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item0.description + "</p></div></div><div id='TabB' class='content_div'><iframe class='imgur-album' width='100%' height='300' frameborder='0' src='" + item0.promo + "'></iframe></div>";
                 var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
 
                 newPage0.appendTo( $.mobile.pageContainer );
@@ -67,10 +81,10 @@ $(document).ready(function() {
         function(data1){
           $.each(data1.items, function(i,item1){
           
-                $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.published + "</p></a></li>");
+                $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.description + "</p></a></li>");
     
 				var clientPageHeader1 = "<ul data-role='listview' data-inset='false' id='menuListHeader1'><li class='ui-li-has-thumb'><a href='#'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3></a></li></ul>"
-				var clientPage1 =  clientPageHeader1 +"<br/><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page1_" + i + "_img' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item1.description + "</p></div>";
+				var clientPage1 = clientPageHeader1 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>En Vivo</a></li><li><a href='#' data-href='TabB'>Promociones</a></li></ul></div><div id='TabA' class='content_div'><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page1_" + i + "_img' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item1.description + "</p></div></div><div id='TabB' class='content_div'><iframe class='imgur-album' width='100%' height='300' frameborder='0' src='" + item1.promo + "'></iframe></div>";
                 var newPage1 = $("<div data-role=page id=page1_" + i + " data-url=page1" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item1.title + "</h1></div><div data-role=content>" + clientPage1 + "</div></div>");
 
                 newPage1.appendTo( $.mobile.pageContainer );
