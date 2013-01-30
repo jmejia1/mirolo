@@ -23,7 +23,7 @@ $(document).ready(function() {
 			if(idToShow.indexOf("_") != -1)
 			{
 				idToShow = idToShow + "_img";
-				timer = window.setInterval(reloadImg, 3000);  //setTimeout("reloadImg(" + idToShow + ")",500);
+				timer = window.setInterval(reloadImg, 2500);  //setTimeout("reloadImg(" + idToShow + ")",500);
 				//console.log("streaming: ON");
 			}
 			else
@@ -67,7 +67,7 @@ $(document).ready(function() {
                 $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.description + "</p></a></li>");
     
 				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
-				var clientPage0 = clientPageHeader0 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>En Vivo</a></li><li><a href='#' data-href='TabB'>Promociones</a></li></ul></div><div id='TabA' class='content_div'><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item0.description + "</p></div></div><div id='TabB' class='content_div'><iframe class='imgur-album' width='100%' height='300' frameborder='0' src='" + item0.promo + "'></iframe></div>";
+				var clientPage0 = clientPageHeader0 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>Actualidad</a></li><li><a href='#' data-href='TabB'>En Tiempo Real</a></li></ul></div><div id='TabA' class='content_div'><iframe class='imgur-album' width='100%' height='400' frameborder='0' src='" + item0.promo + "'></iframe></div><div id='TabB' class='content_div'><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item0.description + "</p></div></div>";
                 var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
 
                 newPage0.appendTo( $.mobile.pageContainer );
@@ -84,7 +84,7 @@ $(document).ready(function() {
                 $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.description + "</p></a></li>");
     
 				var clientPageHeader1 = "<ul data-role='listview' data-inset='false' id='menuListHeader1'><li class='ui-li-has-thumb'><a href='#'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3></a></li></ul>"
-				var clientPage1 = clientPageHeader1 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>En Vivo</a></li><li><a href='#' data-href='TabB'>Promociones</a></li></ul></div><div id='TabA' class='content_div'><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page1_" + i + "_img' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item1.description + "</p></div></div><div id='TabB' class='content_div'><iframe class='imgur-album' width='100%' height='300' frameborder='0' src='" + item1.promo + "'></iframe></div>";
+				var clientPage1 = clientPageHeader1 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>Actualidad</a></li><li><a href='#' data-href='TabB'>En Tiempo Real</a></li></ul></div><div id='TabA' class='content_div'><iframe class='imgur-album' width='100%' height='400' frameborder='0' src='" + item1.promo + "'></iframe></div><div id='TabB' class='content_div'><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page1_" + i + "_img' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item1.description + "</p></div></div>";
                 var newPage1 = $("<div data-role=page id=page1_" + i + " data-url=page1" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item1.title + "</h1></div><div data-role=content>" + clientPage1 + "</div></div>");
 
                 newPage1.appendTo( $.mobile.pageContainer );
@@ -152,10 +152,16 @@ $(document).ready(function() {
     <div data-role=header>
         <h1>Mirolo</h1>
     </div>    
-    <div data-role="content">
+    <div data-role="content" style="text-align: center;">
         <img src="css/images/QuienEsMirolo.jpg"><br/><br/>
 		<div class="transbox">
-        <p>Una herramienta de comunicación y promoción móvil masiva que permite a los clientes publicar y mostrar en tiempo real lo que hay para hacer en sus negocios, y a los usuarios acceder a una Vitrina Digital de los lugares que son de su interés. Esta propuesta busca ser una alternativa eco amigable a la promoción de lugares y eventos, los cuales hoy en día hacen uso intensivo de papel y materiales de impresión. <br/><br/>Para más información visita <a href="http://www.mirolo.net" target="_blank">www.mirolo.net</a></p> 
+        <p>¡Hola, soy Mirolo y Miroleando ando en la ciudad!</p>
+		<p>Donde quiera que yo esté; tú puedes estar para conocer juntos y al instante todo lo que sucede y hay para hacer en los mejores espacios de interés general de la ciudad.</p>
+		<p>Conmigo conocerás la gran oferta de opciones entretenimiento, gastronomía, sitios comunes, turismo, ofertas, especiales y promociones para tu beneficio, curiosidad y deleite.</p>
+		<p>Soy Digital y eco amigable. Por esto, Mi misión es evitar el anticuado, aburrido y destructivo uso de papel para la promoción de lugares y eventos.</p>
+		<p>Antes de ir, conmigo puedes descubrir lo que te ofrece en este instante la ciudad.</p>
+		<p>¡Bienvenido, Comienza a Mirolear!</p>
+		<p>Para más información visita <a href="http://www.mirolo.net" target="_blank">www.mirolo.net</a></p> 
 		</div>
     </div>
 </div>
@@ -163,7 +169,7 @@ $(document).ready(function() {
     <div data-role=header>
         <h1>Mirolo</h1>
     </div> 
-    <div data-role="content">
+    <div data-role="content" style="text-align: center;">
         <img src="css/images/Privacidad.gif"><br/><br/>
 		<div class="transbox">
         <p>Me preocupo por tu privacidad, por eso no me escondo para que siempre sepas donde me encuentro, además no recuerdo nada, sólo miroleo y no grabo. Mi mente no almacena imágenes o recuerdos, no tengo memoria para reproducir los momentos, lugares ni personas. <br/><br/>Siempre tengo presente a todos los términos legales vigentes concernientes al derecho a la intimidad personal, familiar y habeas data, estipulados en el artículo 15 de la constitución y en el artículo 36 de la ley 23 de 1982.</p> 
