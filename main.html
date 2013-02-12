@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,11 +7,25 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.2.0.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/Mirolo.css"/>
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.blockUI.js"></script>
 
 <script type="text/javascript">
 
-$(document).ready(function() {
+	// Ajax activity indicator bound to ajax start/stop document events
+	$(document).ajaxStart(function(){ 
+		$.blockUI({ message: $('#loading') });
+	}).ajaxStop(function(){ 
+		$.unblockUI();
+	});
+
+	$(document).ready(function() {
  
+		//alert("Iniciando...");
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+ 
+		//alert("Cargando datos...");
+		
 		var timer = null; 
 		var idToShow = null;
 
@@ -38,9 +52,7 @@ $(document).ready(function() {
 			
 			$('a[data-href^="Tab"]').removeClass('ui-btn-active');
 			$('a[data-href="TabA"]').addClass('ui-btn-active');
-			
-			refreshBackgrounds('TabBCont');
-			
+						
 		});
 		
 		function reloadImg(){
@@ -49,7 +61,6 @@ $(document).ready(function() {
 			obj.src = obj.src.replace(/([?|&]t=)[^\&]+/, '$1' + rand);
 			//console.log("updating: " + idToShow);
 		}
-		
 		
 		$('div[data-role="navbar"] a').live('click', function () {
 			$(this).addClass('ui-btn-active');
@@ -69,8 +80,7 @@ $(document).ready(function() {
                 $('#page0 #menuList0').append("<li class='ui-li-has-thumb'><a href='#page0" + i + "' data-transition='slide'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3><p class='ui-li-desc'>" + item0.description + "</p></a></li>");
     
 				var clientPageHeader0 = "<ul data-role='listview' data-inset='false' id='menuListHeader0'><li class='ui-li-has-thumb'><a href='#'><img src='" + item0.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item0.title + "</h3></a></li></ul>"
-				//var clientPage0 = clientPageHeader0 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>Actualidad</a></li><li><a href='#' data-href='TabB'>En Tiempo Real</a></li></ul></div><div id='TabA' class='content_div'><iframe class='imgur-album' width='100%' height='400' frameborder='0' src='" + item0.promo + "'></iframe></div><div id='TabB' class='content_div'><div><div style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div><div class='transbox'><p>" + item0.description + "</p></div></div>";
-				var clientPage0 = clientPageHeader0 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>Actualidad</a></li><li><a href='#' data-href='TabB'>En Tiempo Real</a></li></ul></div><div id='TabA' class='content_div'><img alt='' src='" + item0.promo + "' width='100%' /></div><div id='TabB' class='content_div'><div><div id='TabBCont' style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div></div><div class='transbox'><p>" + item0.description + "</p></div>";
+				var clientPage0 = clientPageHeader0 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>Actualidad</a></li><li><a href='#' data-href='TabB'>En Tiempo Real</a></li></ul></div><div id='TabA' class='content_div'><img alt='' src='" + item0.promo + "' width='100%' /></div><div id='TabB' class='content_div'><div><div id='TabBCont' alt='Esperando datos...' style='background-image: url(css/images/Apagado.jpg); background-size: 100%;height:200px;'><img id='page0_" + i + "_img' alt='' src='http://" + item0.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div></div><div class='transbox'><p>" + item0.description + "</p></div>";
                 var newPage0 = $("<div data-role=page id=page0_" + i + " data-url=page0" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item0.title + "</h1></div><div data-role=content>" + clientPage0 + "</div></div>");
 
                 newPage0.appendTo( $.mobile.pageContainer );
@@ -78,6 +88,8 @@ $(document).ready(function() {
             });
         });
 
+		// --------------
+		
         var dataPath1 = 'http://www.mirolo.net/m/data.php?cat=gastronomia';
 
         $.getJSON(dataPath1,
@@ -87,38 +99,22 @@ $(document).ready(function() {
                 $('#page1 #menuList1').append("<li class='ui-li-has-thumb'><a href='#page1" + i + "' data-transition='slide'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3><p class='ui-li-desc'>" + item1.description + "</p></a></li>");
     
 				var clientPageHeader1 = "<ul data-role='listview' data-inset='false' id='menuListHeader1'><li class='ui-li-has-thumb'><a href='#'><img src='" + item1.icon + "' class='ui-li-thumb'><h3 class='ui-li-heading'>" + item1.title + "</h3></a></li></ul>"
-				var clientPage1 = clientPageHeader1 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>Actualidad</a></li><li><a href='#' data-href='TabB'>En Tiempo Real</a></li></ul></div><div id='TabA' class='content_div'><img alt='' src='" + item1.promo + "' width='100%' /></div><div id='TabB' class='content_div'><div><div id='TabBCont' style='background-image: url(css/images/Apagado.jpg); background-size: 100%;'><img id='page1_" + i + "_img' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div></div><div class='transbox'><p>" + item1.description + "</p></div>";
+				var clientPage1 = clientPageHeader1 + "<br/><div data-role='navbar'><ul><li><a href='#' data-href='TabA'>Actualidad</a></li><li><a href='#' data-href='TabB'>En Tiempo Real</a></li></ul></div><div id='TabA' class='content_div'><img alt='' src='" + item1.promo + "' width='100%' /></div><div id='TabB' class='content_div'><div><div id='TabBCont' alt='Esperando datos...' style='background-image: url(css/images/Apagado.jpg); background-size: 100%;;height:200px;'><img id='page1_" + i + "_img' alt='' src='http://" + item1.url + "/snapshot.cgi?user=visitor&pwd=1234&t=1234' width='100%' /></div></div></div><div class='transbox'><p>" + item1.description + "</p></div>";
                 var newPage1 = $("<div data-role=page id=page1_" + i + " data-url=page1" + i + " data-add-back-btn='true'><div data-role=header><h1> Mirolo | " + item1.title + "</h1></div><div data-role=content>" + clientPage1 + "</div></div>");
 
                 newPage1.appendTo( $.mobile.pageContainer );
-
     
             });
         });
 
-		document.addEventListener("deviceready", onDeviceReady, false);
+		//alert("Datos cargados...");
 		
     });
 	
 	// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 	function onDeviceReady() {
 		navigator.network.isReachable('phonegap.com', reachableCallback);
-	}	
-	
-	function refreshBackgrounds(selector) {
-	  // Chrome shim to fix http://groups.google.com/a/chromium.org/group/chromium-bugs/browse_thread/thread/1b6a86d6d4cb8b04/739e937fa945a921
-	  // Remove this once Chrome fixes its bug.
-	  if (/chrome/.test(navigator.userAgent.toLowerCase())) {
-		$(selector).each(function() {
-		  var $this = $(this);
-		  if ($this.css("background-image")) {
-			var oldBackgroundImage = $this.css("background-image");
-			setTimeout(function() {
-			  $this.css("background-image", oldBackgroundImage);
-			}, 1);
-		  }
-		});
-	  }
+		//alert("PhoneGap ready!");
 	}
 	
 </script>
@@ -129,8 +125,13 @@ $(document).ready(function() {
 </head>
 
 <body id="page_body">
+
+	<div id="loading" style="display:none;border:none;background:#000;">
+           <img src="css/images/ajax-loader.gif" />
+     </div>
+
 <div data-role="page" id="pageInicio">
-    <div data-role="content">
+    <div data-role="content" id="InicioContent">
 		<br/>
 		<!--<div style="width: 100%; text-align: center;">
 			<img src="css/images/Logo.png" alt="Logo" />

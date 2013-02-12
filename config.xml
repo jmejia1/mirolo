@@ -16,10 +16,12 @@
 	</author>
 
 	<icon src="icon.png" gap:role="default" />
+	<gap:splash src="splash.png" />
 
 	<feature name="http://api.phonegap.com/1.0/network"/>
 
 	<preference name="phonegap-version" value="2.2.0" />
 	<preference name="orientation" value="portrait" />
 	<preference name="android-installLocation" value="auto" />
+	
 </widget>
