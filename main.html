@@ -13,7 +13,16 @@
 
 	// Ajax activity indicator bound to ajax start/stop document events
 	$(document).ajaxStart(function(){ 
-		$.blockUI({ message: $('#loading') });
+		$.blockUI({ message: $('#loading'), 
+					css: { width:'250px', 
+							top:  ($(window).height() - 250) /2 + 'px',
+							left: ($(window).width() - 250) /2 + 'px', 
+							'font-family': 'Calibri, Verdana, Arial, sans-serif',
+							border: '0px', 
+							opacity: '0.8', 
+							filter: 'alpha(opacity=80)', 
+							'-moz-border-radius': '10px', 
+							'-webkit-border-radius': '10px' } });
 	}).ajaxStop(function(){ 
 		$.unblockUI();
 	});
@@ -126,8 +135,11 @@
 
 <body id="page_body">
 
-	<div id="loading" style="display:none;border:none;background:#000;">
-           <img src="css/images/ajax-loader.gif" />
+	<div id="loading" style="display:none;">
+		<br/><br/><br/>
+		<p><img src="css/images/loader.gif" /></p>
+		<p>Cargando contenido...</p>
+		<br/><br/><br/>
      </div>
 
 <div data-role="page" id="pageInicio">
@@ -144,7 +156,9 @@
 		<a href="#pageQuien" data-theme="" id="QuienEsMirolo"> <img src="css/images/QuienEsMirolo.jpg"></a><br/><br/>
 		</div>
 		<div style="width: 90%; text-align: right;">
-		<a href="#pagePrivacidad" data-theme="" id="Privacidad"> <img src="css/images/Privacidad.gif"></a><br/><br/>
+			<a href="javascript:navigator.app.exitApp();" data-theme="" id="Exit"> <img src="css/images/Exit.png"></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#pagePrivacidad" data-theme="" id="Privacidad"> <img src="css/images/Privacidad.gif"></a><br/><br/>
 		</div>
 		<!--<div style="width: 100%; text-align: center;">
 		<a data-role="button" data-inline="true" href="javascript:navigator.app.exitApp();">Salir</a>
