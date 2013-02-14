@@ -48,14 +48,14 @@
 				idToShow = idToShow + "_img";
                 
                 //TEST **
-                UpdateScreen();
+                //UpdateScreen();
                 
-				//**//timer = window.setInterval(reloadImg, 1000);  //setTimeout("reloadImg(" + idToShow + ")",500);
+				timer = window.setInterval(reloadImg, 1500);  //setTimeout("reloadImg(" + idToShow + ")",500);
 				//console.log("streaming: ON");
 			}
 			else
 			{
-				//clearInterval(timer);
+				clearInterval(timer);
 				idToShow = null;
 				//console.log("streaming: OFF");
 			}
