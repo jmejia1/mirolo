@@ -46,12 +46,16 @@
 			if(idToShow.indexOf("_") != -1)
 			{
 				idToShow = idToShow + "_img";
-				timer = window.setInterval(reloadImg, 1000);  //setTimeout("reloadImg(" + idToShow + ")",500);
+                
+                //TEST **
+                UpdateScreen();
+                
+				//**//timer = window.setInterval(reloadImg, 1000);  //setTimeout("reloadImg(" + idToShow + ")",500);
 				//console.log("streaming: ON");
 			}
 			else
 			{
-				clearInterval(timer);
+				//clearInterval(timer);
 				idToShow = null;
 				//console.log("streaming: OFF");
 			}
@@ -64,6 +68,17 @@
 						
 		});
 		
+        //http://stackoverflow.com/questions/4788351/jquery-load-image-repeatedly
+        function UpdateScreen() {
+          var img = document.getElementById(idToShow);
+          img.onload = function() {
+            $("#"+idToShow).attr("src", this.src);
+            //setTimeout(UpdateScreen, 2000);
+          };
+          var rand = Math.random();
+          img.src = img.src.replace(/([?|&]t=)[^\&]+/, '$1' + rand);
+        }
+        
 		function reloadImg(){
 			var obj = document.getElementById(idToShow);
 			var rand = Math.random();
